@@ -4,6 +4,11 @@ public class UsuarioPublicoDTO {
     private String nombre;
     private String imagenUrl;
 
+    public UsuarioPublicoDTO(String nombre, String imagenUrl) {
+        this.nombre = nombre;
+        this.imagenUrl = imagenUrl;
+    }
+
     public String getNombre() {
         return nombre;
     }

@@ -9,7 +9,8 @@ public class UsuarioDetalleDTO {
     private String imageUrl;
     private Rol rol;
 
-    public UsuarioDetalleDTO(String nombre, String correo, String imageUrl, Rol rol) {
+    public UsuarioDetalleDTO(Long id,String nombre, String correo, String imageUrl, Rol rol) {
+        this.id = id;
         this.nombre = nombre;
         this.correo = correo;
         this.imageUrl = imageUrl;
@@ -17,6 +18,14 @@ public class UsuarioDetalleDTO {
     }
 
     public UsuarioDetalleDTO() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNombre() {

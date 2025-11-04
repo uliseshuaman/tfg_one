@@ -1,5 +1,6 @@
 package com.backend.model;
 
+import com.backend.utilis.Rol;
 import jakarta.persistence.*;
 
 @Entity
@@ -23,7 +24,15 @@ public class Usuario {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String rol; //ADMIN, USER, INVITADO
+    private Rol rol; //ADMIN, USER, INVITADO
+
+    public Usuario(String nombre, String correo, String contrasena, String imageUrl, Rol rol) {
+        this.nombre = nombre;
+        this.correo = correo;
+        this.contrasena = contrasena;
+        this.imageUrl = imageUrl;
+        this.rol = rol;
+    }
 
     public Long getId() {
         return id;
@@ -65,11 +74,11 @@ public class Usuario {
         this.imageUrl = imageUrl;
     }
 
-    public String getRol() {
+    public Rol getRol() {
         return rol;
     }
 
-    public void setRol(String rol) {
+    public void setRol(Rol rol) {
         this.rol = rol;
     }
 }

@@ -1,8 +1,14 @@
 package com.backend.service;
 
+import com.backend.model.Usuario;
 import com.backend.repository.UsuarioRepository;
+import com.backend.utilis.Rol;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UsuarioService {
@@ -12,7 +18,7 @@ public class UsuarioService {
 
     public List<UsuarioPublicoDTO> obtenerVistaPublica() {
         return usuarioRepository.findAll().stream()
-                .map(u -> new UsuarioPublicoDTO(u.getNombre(), u.getImagenUrl()))
+                .map(u -> new UsuarioPublicoDTO(u.getNombre(), u.getImageUrl()))
                 .collect(Collectors.toList());
     }
 
@@ -28,7 +34,7 @@ public class UsuarioService {
                 usuario.getId(),
                 usuario.getNombre(),
                 usuario.getCorreo(),
-                usuario.getImagenUrl(),
+                usuario.getImageUrl(),
                 usuario.getRol()
         );
     }
@@ -42,21 +48,21 @@ public class UsuarioService {
         }
 
         usuario.setNombre(datos.getNombre());
-        usuario.setImagenUrl(datos.getImagenUrl());
+        usuario.setImageUrl(datos.getImageUrl());
         usuarioRepository.save(usuario);
 
         return new UsuarioDetalleDTO(
                 usuario.getId(),
                 usuario.getNombre(),
                 usuario.getCorreo(),
-                usuario.getImagenUrl(),
+                usuario.getImageUrl(),
                 usuario.getRol()
         );
     }
 
     public List<UsuarioDetalleDTO> obtenerTodos() {
         return usuarioRepository.findAll().stream()
-                .map(u -> new UsuarioDetalleDTO(u.getId(), u.getNombre(), u.getCorreo(), u.getImagenUrl(), u.getRol()))
+                .map(u -> new UsuarioDetalleDTO(u.getId(), u.getNombre(), u.getCorreo(), u.getImageUrl(), u.getRol()))
                 .collect(Collectors.toList());
     }
 
